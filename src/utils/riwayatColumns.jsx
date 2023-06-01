@@ -1,6 +1,6 @@
-import { BiCheck, BiX } from "react-icons/bi";
+import clsx from "clsx";
 
-export const pengajuanColumn = (rejectFunction, acceptFunction) => [
+export const riwayatColumns = [
     {
         name: "No",
         selector: (row, index) => index + 1,
@@ -40,22 +40,17 @@ export const pengajuanColumn = (rejectFunction, acceptFunction) => [
         sortable: true,
     },
     {
-        name: "Aksi",
-        width: "180px",
+        name: "Status",
         selector: (row) => (
-            <div className="flex items-center gap-2 justify-center w-full">
-                <button
-                    className="btn btn-secondary px-2 py-2 text-red-600 bg-red-100 hover:bg-red-200"
-                    onClick={() => rejectFunction(row.id)}
-                >
-                    <BiX />
-                </button>
-                <button
-                    className="btn btn-primary px-4 py-2"
-                    onClick={() => acceptFunction(row.id)}
-                >
-                    <BiCheck /> Setujui
-                </button>
+            <div
+                className={clsx(
+                    "px-2 py-1 rounded-full flex items-center justify-center",
+                    row.status === "requested" && "bg-yellow-100 text-yellow-600",
+                    row.status === "approved" && "bg-teal-100 text-teal-600",
+                    row.status === "rejected" && "bg-red-100 text-red-600"
+                )}
+            >
+                {row.status}
             </div>
         ),
         sortable: true,

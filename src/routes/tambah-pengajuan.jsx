@@ -180,12 +180,16 @@ export const TambahPengajuan = () => {
                                                 type="text"
                                                 placeholder="Tambah Peserta"
                                             />
-                                            <button
-                                                className="text-neutral-3 hover:text-neutral-4"
-                                                onClick={(e) => handleRemoveParticipant(e, index)}
-                                            >
-                                                <BiTrash />
-                                            </button>
+                                            {participants.length > 1 && (
+                                                <button
+                                                    className="text-neutral-3 hover:text-neutral-4"
+                                                    onClick={(e) =>
+                                                        handleRemoveParticipant(e, index)
+                                                    }
+                                                >
+                                                    <BiTrash />
+                                                </button>
+                                            )}
                                         </div>
                                     ))}
                                     <button

@@ -1,8 +1,8 @@
 import { Layout } from "../components/Layout";
 import DataTable from "react-data-table-component";
-import { pengajuanColumn } from "../utils/pengajuanColumns";
 import { getAllTrainingData } from "../api/trainingData";
 import { useEffect, useState } from "react";
+import { riwayatColumns } from "../utils/riwayatColumns";
 
 export const RiwayatPelatihan = () => {
     const [data, setData] = useState([]);
@@ -22,7 +22,7 @@ export const RiwayatPelatihan = () => {
         <Layout>
             <section className="container py-10">
                 <h1 className="h4">Riwayat Pelatihan</h1>
-                <DataTable className="mt-5" columns={pengajuanColumn} data={data} />
+                <DataTable className="mt-5" columns={riwayatColumns} data={data} />
             </section>
         </Layout>
     );

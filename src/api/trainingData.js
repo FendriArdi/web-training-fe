@@ -47,3 +47,24 @@ export const submitTrainingData = async (data, participants) => {
         throw new Error(error.response.data.message);
     }
 };
+
+export const updateTrainingData = async (id, status) => {
+    try {
+        const config = getApiConfig();
+        const res = await apiClient.put(
+            "training/" + id,
+            {
+                status
+            },
+            config
+        );
+
+        if (res.status === 200) {
+            return "success";
+        } else {
+            return "error";
+        }
+    } catch (error) {
+        throw new Error(error.response.data.message);
+    }
+};

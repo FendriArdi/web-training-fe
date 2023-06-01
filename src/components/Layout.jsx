@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { Header } from "./Header";
 
 export const Layout = ({ children }) => {
@@ -11,5 +11,5 @@ export const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
-    children: React.Component,
+    children: PropTypes.element,
 };
