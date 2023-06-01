@@ -9,6 +9,8 @@ import { RiwayatPelatihan } from "./routes/riwayat-pelatihan";
 import { RiwayatPengajuan } from "./routes/riwayat-pengajuan";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { ProtectedAdminRoute } from "./components/ProtectedAdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -17,19 +19,39 @@ const router = createBrowserRouter([
     },
     {
         path: "/",
-        element: <Admin />,
+        element: (
+            <ProtectedRoute>
+                <ProtectedAdminRoute>
+                    <Admin />
+                </ProtectedAdminRoute>
+            </ProtectedRoute>
+        ),
     },
     {
         path: "/tambah-pengajuan",
-        element: <TambahPengajuan />,
+        element: (
+            <ProtectedRoute>
+                <TambahPengajuan />
+            </ProtectedRoute>
+        ),
     },
     {
         path: "/riwayat-pengajuan",
-        element: <RiwayatPengajuan />,
+        element: (
+            <ProtectedRoute>
+                <RiwayatPengajuan />
+            </ProtectedRoute>
+        ),
     },
     {
         path: "/riwayat-pelatihan",
-        element: <RiwayatPelatihan />,
+        element: (
+            <ProtectedRoute>
+                <ProtectedAdminRoute>
+                    <RiwayatPelatihan />
+                </ProtectedAdminRoute>
+            </ProtectedRoute>
+        ),
     },
 ]);
 

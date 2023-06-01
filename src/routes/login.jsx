@@ -4,16 +4,23 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Login = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
-
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const role = localStorage.getItem("role");
+        if (role) {
+            navigate("/");
+        }
+    }, []);
 
     const onSubmit = async (data) => {
         setIsLoading(true);

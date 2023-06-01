@@ -1,4 +1,6 @@
+import moment from "moment/moment";
 import { BiCheck, BiX } from "react-icons/bi";
+import { rupiahFormatter } from "./rupiahFormatter";
 
 export const pengajuanColumn = (rejectFunction, acceptFunction) => [
     {
@@ -30,13 +32,13 @@ export const pengajuanColumn = (rejectFunction, acceptFunction) => [
         sortable: true,
     },
     {
-        name: "Tanggal",
-        selector: (row) => row.heldAt,
+        name: "Tanggal Pelatihan",
+        selector: (row) => moment(row.heldAt).locale("id").format("DD MMMM YYYY"),
         sortable: true,
     },
     {
         name: "Biaya",
-        selector: (row) => row.cost ?? "-",
+        selector: (row) => rupiahFormatter(row.cost) ?? "-",
         sortable: true,
     },
     {
