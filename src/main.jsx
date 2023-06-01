@@ -2,24 +2,21 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import { Root } from "./routes/root";
 import { Login } from "./routes/login";
 import { Admin } from "./routes/admin";
 import { TambahPengajuan } from "./routes/tambah-pengajuan";
 import { RiwayatPelatihan } from "./routes/riwayat-pelatihan";
 import { RiwayatPengajuan } from "./routes/riwayat-pengajuan";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Root />,
-    },
     {
         path: "/login",
         element: <Login />,
     },
     {
-        path: "/admin",
+        path: "/",
         element: <Admin />,
     },
     {
@@ -39,5 +36,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <RouterProvider router={router} />
+        <ToastContainer />
     </React.StrictMode>
 );

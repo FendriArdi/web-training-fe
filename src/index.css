@@ -89,3 +89,22 @@
         @apply inline-block h-fit self-center text-neutral-4 hover:text-primary-4 transition-all;
     }
 }
+
+.rdt_Table {
+    border: 1px solid #eaeaea;
+    font-family: "Roboto", sans-serif;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.rdt_TableCol,
+.rdt_TableCell {
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    @apply p3;
+}
+.rdt_TableHeadRow {
+    background-color: #f9f8f9 !important;
+}
+.rdt_TableCol_Sortable > * {
+    font-weight: 700 !important;
+}
