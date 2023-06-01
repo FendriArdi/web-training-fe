@@ -6,6 +6,7 @@ import { getRequestedTrainingData, updateTrainingData } from "../api/trainingDat
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { ConfirmationAlert } from "../components/ConfirmationAlert";
+import { BigCalendar } from "../components/BigCalendar";
 
 export const Admin = () => {
     const [data, setData] = useState([]);
@@ -70,9 +71,13 @@ export const Admin = () => {
                     )}
                     data={data}
                 />
-                <div className="tab mt-5"></div>
                 <h2 className="h4 mt-12">Daftar Pelatihan</h2>
-                <div className="tab mt-5"></div>
+                <div className="tab mt-8 grid grid-cols-3 gap-12">
+                    <div className="col-span-2">
+                        <BigCalendar />
+                    </div>
+                    <div className="bg-white rounded-md"></div>
+                </div>
             </section>
         </Layout>
     );

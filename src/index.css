@@ -108,3 +108,58 @@
 .rdt_TableCol_Sortable > * {
     font-weight: 700 !important;
 }
+main header {
+    background: transparent !important;
+    padding: 0 !important;
+    width: 100%;
+}
+
+/* rbc style */
+.rbc-calendar .rbc-month-view {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.rbc-calendar .rbc-day-bg.rbc-today {
+    @apply bg-teal-100;
+}
+.rbc-calendar .rbc-btn-group {
+    display: flex;
+    border: none;
+}
+.rbc-calendar .rbc-month-header .rbc-header {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    @apply bg-primary-3 border-none text-white;
+}
+.rbc-calendar .rbc-day-bg {
+    @apply bg-white;
+}
+.rbc-calendar .rbc-day-bg.rbc-off-range-bg {
+    @apply bg-gray-100;
+}
+.rbc-calendar .rbc-btn-group button {
+    @apply btn btn-secondary bg-neutral-1 border-primary-2 px-3;
+}
+.rbc-calendar .rbc-toolbar-label {
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
+}
+.rbc-calendar .rbc-btn-group button.rbc-active,
+.rbc-calendar .rbc-btn-group button.rbc-active:active,
+.rbc-calendar .rbc-btn-group button.rbc-active:focus,
+.rbc-calendar .rbc-btn-group button:active,
+.rbc-calendar .rbc-btn-group button:focus {
+    box-shadow: none;
+    @apply border-primary-2 bg-primary-2 text-white;
+}
+.rbc-calendar .rbc-btn-group button.rbc-active:hover {
+    box-shadow: none;
+    border-color: transparent;
+    @apply border-primary-2 bg-primary-3 text-white;
+}
+.rbc-calendar .rbc-btn-group button:hover {
+    box-shadow: none;
+    border-color: transparent;
+    @apply border-primary-2 bg-primary-3 text-white;
+}
