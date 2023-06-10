@@ -47,9 +47,10 @@ export const Training = () => {
 
     return (
         <Layout isTraining>
-            <section className="container grid grid-cols-2 gap-10">
+            <section className="container grid gap-10">
                 <div className="py-12">
-                    <h1 className="h4">Latihan</h1>
+                    <h1 className="h4">Quiz</h1>
+                    <h2 className="h6 text-gray-800 mt-2">Pelatihan {training.name}</h2>
                     <div className="mt-5">
                         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
                             <div className="form-group flex flex-col">
@@ -57,6 +58,7 @@ export const Training = () => {
                                 <input
                                     className="input-field"
                                     type="text"
+                                    required
                                     placeholder="Tuliskan nama lengkapmu di sini"
                                     {...register("participant", { required: true })}
                                 />
@@ -74,6 +76,7 @@ export const Training = () => {
                                 <div className="form-group flex flex-col" key={`q-${index}`}>
                                     <label className="p2 text-gray-700">{question.text}</label>
                                     <textarea
+                                        required
                                         className="input-field"
                                         name=""
                                         id=""
@@ -88,7 +91,8 @@ export const Training = () => {
                             <button
                                 className={clsx(
                                     "btn btn-primary",
-                                    isLoading && "opacity-40 pointer-events-none"
+                                    (isLoading || answers.includes("") || answers.length === 0) &&
+                                        "opacity-40 pointer-events-none"
                                 )}
                                 type="submit"
                             >
