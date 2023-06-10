@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { submitTrainingData } from "../api/trainingData";
+import { handleArrayAdd, handleArrayChange, handleArrayRemove } from "../utils/arrayHandling";
 
 export const TambahPengajuan = () => {
     const {
@@ -14,31 +15,38 @@ export const TambahPengajuan = () => {
         formState: { errors },
     } = useForm();
     const [participants, setParticipants] = useState([""]);
+    const [questions, setQuestions] = useState([""]);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleChangeParticipant = (index, val) => {
-        const newParticipant = [...participants];
-        newParticipant[index] = val;
-        setParticipants([...newParticipant]);
+        handleArrayChange(null, index, val, participants, setParticipants);
     };
 
     const handleRemoveParticipant = (e, index) => {
-        e.preventDefault();
-        const newParticipant = [...participants];
-        newParticipant.splice(index, 1);
-        setParticipants([...newParticipant]);
+        handleArrayRemove(e, index, participants, setParticipants);
     };
 
     const handleAddParticipant = (e) => {
-        e.preventDefault();
-        setParticipants((val) => [...val, ""]);
+        handleArrayAdd(e, participants, setParticipants);
+    };
+
+    const handleChangeQuestion = (index, val) => {
+        handleArrayChange(null, index, val, questions, setQuestions);
+    };
+
+    const handleRemoveQuestion = (e, index) => {
+        handleArrayRemove(e, index, questions, setQuestions);
+    };
+
+    const handleAddQuestion = (e) => {
+        handleArrayAdd(e, questions, setQuestions);
     };
 
     const onSubmit = async (data) => {
         setIsLoading(true);
         try {
-            const result = await submitTrainingData(data, participants);
+            const result = await submitTrainingData(data, participants, questions);
             if (result === "success") {
                 toast.success("Pelatihan berhasil diajukan!");
                 setTimeout(() => {
@@ -202,10 +210,52 @@ export const TambahPengajuan = () => {
                                 </div>
                             </div>
 
+                            <div className="form-group flex flex-col gap-1">
+                                <label className="p2 text-gray-700">Soal Pelatihan</label>
+                                <div className="flex flex-col">
+                                    {questions.map((question, index) => (
+                                        <div
+                                            key={`question-${index}`}
+                                            className="flex items-center gap-2 w-full"
+                                        >
+                                            <input
+                                                value={question}
+                                                onChange={(e) =>
+                                                    handleChangeQuestion(index, e.target.value)
+                                                }
+                                                className="input-field flex-grow"
+                                                type="text"
+                                                placeholder="Tulis pertanyaan essai di sini"
+                                            />
+                                            {questions.length > 1 && (
+                                                <button
+                                                    className="text-neutral-3 hover:text-neutral-4"
+                                                    onClick={(e) => handleRemoveQuestion(e, index)}
+                                                >
+                                                    <BiTrash />
+                                                </button>
+                                            )}
+                                        </div>
+                                    ))}
+                                    <button
+                                        className="btn btn-secondary w-fit mt-2"
+                                        onClick={handleAddQuestion}
+                                    >
+                                        <BiPlus />
+                                        Tambah
+                                    </button>
+                                </div>
+                            </div>
+
                             <button
                                 className={clsx(
                                     "btn btn-primary",
-                                    isLoading && "opacity-40 pointer-events-none"
+                                    (isLoading ||
+                                        questions.length === 0 ||
+                                        questions[0] === "" ||
+                                        participants.length === 0 ||
+                                        participants[0] === "") &&
+                                        "opacity-40 pointer-events-none"
                                 )}
                                 type="submit"
                             >

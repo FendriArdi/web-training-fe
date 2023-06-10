@@ -25,7 +25,29 @@ export const getAllTrainingData = async () => {
     }
 };
 
-export const submitTrainingData = async (data, participants) => {
+export const getAllTrainingSchedule = async () => {
+    const config = getApiConfig();
+
+    try {
+        const res = await apiClient.get("training/schedule", config);
+        const data = res.data.data
+
+        const mappedData = data.map((item, idx) => ({
+            id: idx,
+            title: item.name,
+            allDay: true,
+            start: new Date(item.heldAt),
+            end: new Date(item.heldAt)
+        }))
+
+        return [res.data.data, mappedData];
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+
+export const submitTrainingData = async (data, participants, questions) => {
     try {
         const config = getApiConfig();
         const res = await apiClient.post(
@@ -33,6 +55,7 @@ export const submitTrainingData = async (data, participants) => {
             {
                 ...data,
                 participants,
+                questions,
                 cost: parseInt(data.cost),
             },
             config

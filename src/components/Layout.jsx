@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children, isTraining }) => {
     return (
         <>
-            <Header />
+            {!isTraining && <Header />}
             <main className="bg-neutral-1 overflow-hidden">{children}</main>
         </>
     );
@@ -12,4 +12,9 @@ export const Layout = ({ children }) => {
 
 Layout.propTypes = {
     children: PropTypes.element,
+    isTraining: PropTypes.bool,
+};
+
+Layout.defaultProps = {
+    isTraining: false,
 };

@@ -10,12 +10,19 @@ export const riwayatColumns = [
     },
     {
         name: "Nama Pelatihan",
-        selector: (row) => row.name,
+        selector: (row) =>
+            row.status === "ongoing" ? (
+                <a className="font-semibold text-blue-950" href={`/training/${row.id}`}>
+                    {row.name}
+                </a>
+            ) : (
+                row.name
+            ),
         sortable: true,
     },
     {
         name: "Tujuan",
-        selector: (row) => row.purpose,
+        selector: (row) => <div className="!whitespace-normal">{row.purpose}</div>,
         sortable: true,
         style: {
             whiteSpace: "prewarp",
@@ -48,7 +55,7 @@ export const riwayatColumns = [
                 className={clsx(
                     "px-2 py-1 rounded-full flex items-center justify-center",
                     row.status === "requested" && "bg-yellow-100 text-yellow-600",
-                    row.status === "approved" && "bg-teal-100 text-teal-600",
+                    row.status === "ongoing" && "bg-teal-100 text-teal-600",
                     row.status === "rejected" && "bg-red-100 text-red-600"
                 )}
             >

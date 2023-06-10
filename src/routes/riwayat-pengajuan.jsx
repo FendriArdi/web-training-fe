@@ -22,6 +22,8 @@ export const RiwayatPengajuan = () => {
         fetchData();
     }, []);
 
+    console.log(data);
+
     const subHeaderComponentMemo = useMemo(() => {
         return (
             <Filter

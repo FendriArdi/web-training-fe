@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ProtectedAdminRoute } from "./components/ProtectedAdminRoute";
+import { Training, loader } from "./routes/training";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
                 </ProtectedAdminRoute>
             </ProtectedRoute>
         ),
+    },
+    {
+        path: "/training/:id",
+        loader: loader,
+        element: <Training />,
     },
 ]);
 
