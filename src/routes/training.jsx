@@ -26,14 +26,12 @@ export const Training = () => {
 
     const handleChangeAnswer = (index, val) => {
         handleArrayChange(null, index, val, answers, setAnswers);
-        console.log(answers);
     };
 
     const onSubmit = async (data) => {
         setIsLoading(true);
         try {
             const result = await postTrainingAnswer(id, data, answers);
-            console.log(result);
             if (result) {
                 toast.success("Jawaban berhasil dikirimkan!");
             } else {

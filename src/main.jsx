@@ -12,6 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ProtectedAdminRoute } from "./components/ProtectedAdminRoute";
 import { Training, loader } from "./routes/training";
+import { TrainingQR, loader as QRLoader } from "./routes/training-qr";
+import { TrainingAnswer, loader as answerLoader } from "./routes/training-answer";
 
 const router = createBrowserRouter([
     {
@@ -58,6 +60,16 @@ const router = createBrowserRouter([
         path: "/training/:id",
         loader: loader,
         element: <Training />,
+    },
+    {
+        path: "/training-answer/:trainingId/:userId",
+        loader: answerLoader,
+        element: <TrainingAnswer />,
+    },
+    {
+        path: "/qr-training/:id",
+        loader: QRLoader,
+        element: <TrainingQR />,
     },
 ]);
 

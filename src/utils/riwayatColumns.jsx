@@ -12,7 +12,7 @@ export const riwayatColumns = [
         name: "Nama Pelatihan",
         selector: (row) =>
             row.status === "ongoing" ? (
-                <a className="font-semibold text-blue-950" href={`/training/${row.id}`}>
+                <a className="font-semibold text-blue-600" href={`/qr-training/${row.id}`}>
                     {row.name}
                 </a>
             ) : (

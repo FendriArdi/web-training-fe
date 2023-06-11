@@ -13,6 +13,30 @@ export const getTrainingQuestions = async (id) => {
     }
 };
 
+export const getTrainingAnswers = async (trainingId, answerId) => {
+    const config = getApiConfig();
+
+    try {
+        const res = await apiClient.get(`training/${trainingId}/${answerId}`, config);
+        return res.data.data;
+    } catch (error) {
+        console.log(error);
+        return null
+    }
+};
+
+export const getTrainingDetail = async (id) => {
+    const config = getApiConfig();
+
+    try {
+        const res = await apiClient.get("training/" + id, config);
+        return res.data.data;
+    } catch (error) {
+        console.log(error);
+        return null
+    }
+};
+
 export const postTrainingAnswer = async (id, data, answers) => {
     const config = getApiConfig();
 
