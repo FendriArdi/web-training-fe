@@ -56,7 +56,7 @@ export const riwayatColumns = [
                     "px-2 py-1 rounded-full flex items-center justify-center",
                     row.status === "requested" && "bg-yellow-100 text-yellow-600",
                     row.status === "ongoing" && "bg-teal-100 text-teal-600",
-                    row.status === "rejected" && "bg-red-100 text-red-600"
+                    row.status === "approved" && "bg-red-100 text-blue-500"
                 )}
             >
                 {row.status}
