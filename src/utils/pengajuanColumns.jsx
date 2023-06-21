@@ -1,5 +1,5 @@
 import moment from "moment/moment";
-import { BiCheck } from "react-icons/bi";
+import { BiCheck, BiX } from "react-icons/bi";
 import { rupiahFormatter } from "./rupiahFormatter";
 
 export const pengajuanColumn = (rejectFunction, acceptFunction) => [
@@ -46,12 +46,12 @@ export const pengajuanColumn = (rejectFunction, acceptFunction) => [
         width: "180px",
         selector: (row) => (
             <div className="flex items-center gap-2 justify-center w-full">
-                {/* <button
+                <button
                     className="btn btn-secondary px-2 py-2 text-red-600 bg-red-100 hover:bg-red-200"
                     onClick={() => rejectFunction(row.id)}
                 >
                     <BiX />
-                </button> */}
+                </button>
                 <button
                     className="btn btn-primary px-4 py-2"
                     onClick={() => acceptFunction(row.id)}
